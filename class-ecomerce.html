@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 01: Class Ecommerce</title>
+</head>
+<body>
+  <p>Please open the browser console to see the results!</p>
+
+  <script>
+  // Criar um ficheiro html com uma tag script ✅
+
+  // Criar uma class chamada Ecommerce ✅
+    // Precisa de receber um produto e um carrinho ✅
+    // O produto precisa de ser um array de objetos ✅
+
+  class Ecommerce {
+    constructor() {
+      this.products = [
+        {
+          id: 0,
+          name: 'MacBook Pro 16',
+          price: 1499.99
+        },
+        {
+          id: 1,
+          name: 'AirPods Max II',
+          price: 499.99
+        },
+        {
+          id: 2,
+          name: 'iPhone 17 Air',
+          price: 999.99
+        }
+      ];
+      
+      this.cart = [];
+    }
+
+    // Criar um método addProduct que aceita um produto e o adicione à lista de produtos ✅
+    addProduct(product) {
+      this.products.push(product);
+    }
+
+    // Criar um método setProductPrice que aceita 2 parametros: productId e price + atualiza o respetivo produto com o preço novo ✅
+    setProductPrice(productId, price) {
+      const product = this.products.find(product => product.id === productId);
+      if(product) {product.price = price};
+    }
+
+    // Criar um método getAllProducts que devolve a lista de todos os produtos ✅
+    getAllProducts() {
+      return (
+        this.products
+      )
+    }
+
+    // Criar um método getAllProductsNames que devolve a lista de todos os produtos ✅
+    getAllProductsNames() {
+      return (
+        this.products.map((product) => product.name)
+      )
+    }
+
+    // Criar um método getProductById que aceite um ID e devolva o respetivo produto ✅
+    getProductById(id) {
+      return (
+        this.products.find((product) => product.id === id)
+      )
+    }
+
+    // Criar um método getProductByPrice que aceita 2 parametros: initialPrice e finalPrice + devolve os produtos que sejam iguais ou superiores a initialPrice e menores ou iguais a finalPrice ✅
+    getProductByPrice(initialPrice, finalPrice) {
+      return (
+        this.products.filter((product) => product.price >= initialPrice && product.price <= finalPrice)
+      )
+    }
+    
+    // Criar um método addProductToCart que aceita um produto e adiciona esse produto ao carrinho de compras ✅
+    addProductToCart(productId) {
+      const getProduct = this.getProductById(productId)
+      productId && this.cart.push(getProduct);
+    }
+
+    // Criar um método getCartTotalPrice: devolve a soma de todos os produtos do carrinho ✅
+    getCartTotalPrice() {
+      let cartTotal = 0;
+      for (let i = 0; i < this.cart.length; i++) {
+        cartTotal += this.cart[i].price;
+      }
+      return cartTotal
+
+    }
+  }
+
+  // Test #1: Add new product to the list ✅
+  const newProduct = new Ecommerce();
+  newProduct.addProduct({id: 3, name: 'Apple Watch', price: 399.99});
+  console.log(newProduct.products);
+
+  // Test #2: Testing setProductPrice ✅
+  newProduct.setProductPrice(2, 699.99);
+
+  // Test #3: Check getAllProducts ✅
+  console.log('Get all products:', newProduct.getAllProducts());
+
+  // Test #4: Check getAllProductsNames ✅ 
+  console.log('Get all product names:', newProduct.getAllProductsNames());
+
+  // Test #5: Check getProductById ✅
+  console.log('Get product by ID:', newProduct.getProductById(2));
+
+  // Test #6: Check getProductByPrice ✅
+  console.log('Get product by price:', newProduct.getProductByPrice(100, 1000));
+
+  // Test #7: Add product to cart and check the cart ✅
+  newProduct.addProductToCart(2);
+  newProduct.addProductToCart(0);
+  console.log('Add products to cart and check cart:', newProduct.cart);
+
+  // Test #8: Check cart total ✅
+  newProduct.addProductToCart(2);
+  console.log('Get total cart price:', newProduct.getCartTotalPrice());
+
+  </script>
+</body>
+</html>

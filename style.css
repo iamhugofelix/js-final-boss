@@ -1,0 +1,84 @@
+/* Small CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+/* Typography */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+/* Page Layout*/
+.page-layout {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Products */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.product-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
+    padding: 1rem;
+    border: solid 1px #e7e5e4;
+    border-radius: 0.5rem;
+}
+
+.card-image {
+    width: 100%;
+    height: 16rem;
+    aspect-ratio: 1/1;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-image > img {
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.card-details {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 0.5rem;;
+}
+
+.card-price {
+    padding-top: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.card-actions {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: end;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.5rem 0.75rem;
+    width: 100%;
+    cursor: pointer;
+}
