@@ -9,6 +9,9 @@ async function getProducts() {
 
 getProducts()
 
+
+// Criar dinamicamente uma grelha de produtos, utilizando o nome e imagem dos produtos carregados;
+
 function displayProducts(data) {
     const grid = document.querySelector('.product-grid');
 
@@ -48,13 +51,44 @@ function displayProducts(data) {
             </div>`;
 
         const button = card.querySelector('button');
-        button.addEventListener('click', () => {/*Add to Cart */})
+        button.addEventListener('click', () => {addToCart(item.id)})
 
 
         grid.appendChild(card);
     });
 
-    // Remove this before sending
-    console.log(data);
 }
+
+
+//Adicionalmente, a cada produto deve ser gerado um botão com o texto “Add to cart”. Este botão deverá ter uma função ao ser clicado que adiciona um produto ao carrinho. Para isso usem o endpoint: Enviar para o endpoint https://fakestoreapi.com/carts/7 e o method deverá ser de update (PUT);
+
+function addToCart(productId) {
+
+    let today = new Date().toISOString().split('T')[0];
+
+    let cartData = {
+      userId: 1,
+      date: today,
+      products: [
+        {
+          productId: productId,
+          quantity: 1
+        },
+      ],
+    };
+
+    fetch('https://fakestoreapi.com/carts/7', {
+        method: 'PUT',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cartData)
+    })
+    .then(result => result.json())
+    .then(data => {
+        console.log(data);
+        alert('Product added to cart')
+    })
+}
+
+const footer = document.getElementById('footer');
+footer.innerText = `Copyright © ${new Date().getFullYear()}`
 
